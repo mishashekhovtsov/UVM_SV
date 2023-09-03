@@ -24,7 +24,6 @@ if {$classdebug} {
       set cld -noclassdebug
 } 
 
-
 if {$need_del} {
    vdel -all work
    vlib work
@@ -34,30 +33,36 @@ set modelsim_dir /home/mixa/Programs/questasim
 set uvm_lib_path /home/mixa/Programs/questasim/uvm-1.2
 set uvm_src_path /home/mixa/Programs/questasim/verilog_src/uvm-1.2/src
 
-onerror {quit -f}
+#onerror {quit -f}
 
-vlog $opt +incdir+../tb ../tb/testbenches/test_1_tb_pkg.svh -sv 
-vlog $opt +incdir+../tb ../tb/testbenches/test_1_tb.sv -sv
 vlog $opt +incdir+../tb ../src/rtl.sv
-vlog $opt +incdir+../tb ../tb/uvm_classes/my_sequence.svh -sv 
-vlog $opt +incdir+../tb ../tb/uvm_classes/my_driver.svh -sv 
+
+vlog -f files.f -sv
 
 #if [expr {${comperror}!=""}] then {
 #      echo "ERROR COMPILE!!!!"
 #      quit -f
 #} else {
 #      vsim  $sopt  +UVM_VERBOSITY=UVM_HIGH  $cld \
-#        -uvmcontrol=all work.top  +UVM_TESTNAME=my_test
+#        -uvmcontrol=all work.top  +UVM_TESTNAME=base_test
 #}
 
 vsim  $sopt  +UVM_VERBOSITY=UVM_HIGH  $cld \
-        -uvmcontrol=all work.top  +UVM_TESTNAME=my_test
+        -sv_seed random -uvmcontrol=all work.top  +UVM_TESTNAME=base_test
 
 if {$classdebug} {
-      run 500 ns
+      add wave top/vif/clk
+      add wave top/vif/in
+      add wave top/vif/out
+      add wave top/dut/clk
+      add wave top/dut/rst_n
+      add wave top/dut/in
+      add wave top/dut/q
+      add wave top/dut/reg_shift
+      run -all
 } 
 
-view -undock wave 
+#view -undock wave 
 #do proj_wave.do 
 
 
