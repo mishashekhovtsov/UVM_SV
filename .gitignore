@@ -1,0 +1,6 @@
+UVM_test/sim/work/
+UVM_test/sim/certe_dump.xml
+UVM_test/sim/dump.vcd
+UVM_test/sim/tr_db.log
+UVM_test/sim/transcript
+UVM_test/sim/vsim.wlf
