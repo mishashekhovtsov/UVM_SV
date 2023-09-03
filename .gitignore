@@ -1,0 +1,7 @@
+sim/work/
+sim/certe_dump.xml
+sim/dump.vcd
+sim/tr_db.log
+sim/transcript
+sim/vsim.wlf
+sim/vsim_stacktrace.vstf
