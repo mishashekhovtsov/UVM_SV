@@ -1,14 +1,11 @@
-`timescale 100ns/10ps
+`timescale 1ns/1ps
 
 `include "uvm_macros.svh"
-import uvm_pkg::*;
-
-//`include "tb_pkg.svh"
-`include "../../common/shift_if_pkg/shift_pkg.sv"
+`include "../../common/shift/shift_if_pkg/shift_pkg.sv"
 `include "shift_if.sv"
 
 module top;
-  
+  import uvm_pkg::*;
   import tb_pkg::*;
 
   bit rst_n;
