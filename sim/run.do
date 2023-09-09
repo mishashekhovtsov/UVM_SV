@@ -39,11 +39,13 @@ vlog $opt +incdir+../tb ../src/rtl.sv
 
 vlog -f files.f -sv
 
-vsim  $sopt  +UVM_VERBOSITY=UVM_HIGH  $cld \
-        -sv_seed random -uvmcontrol=all work.top  +UVM_TESTNAME=base_test
+vsim  $sopt  +UVM_VERBOSITY=UVM_MEDIUM  $cld \
+        -sv_seed 1 -uvmcontrol=all work.top  +UVM_TESTNAME=base_test
 
 if {$classdebug} {
       add wave -position insertpoint sim:/top/dut/*
+      add wave -position insertpoint sim:/top/clk_vif/*
+      add wave -position insertpoint sim:/top/shift_vif/*
       #set NoQuitOnFinish 1
       onbreak {resume}
       #log /* -r

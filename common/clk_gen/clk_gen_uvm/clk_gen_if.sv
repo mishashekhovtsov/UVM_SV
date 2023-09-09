@@ -1,5 +1,3 @@
-interface shift_if;
-	logic clk;
-	bit in;
-	bit out;
-endinterface : shift_if
+interface clk_gen_if;
+    logic clk_o;
+endinterface : clk_gen_if

@@ -1,13 +1,13 @@
-package shift_pkg;
+package clk_gen_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
 
-    //`include "shift_if.sv"
-    `include "shift_tran.svh"
-    `include "shift_seqr.svh"
-    `include "shift_drv.svh"
-    `include "shift_mon.svh"
-    `include "shift_agt.svh"
-    `include "shift_seq.svh"
+    //`include "clk_gen_if.sv"
+    `include "clk_gen_trans.svh"
+    `include "clk_gen_seqr.svh"
+    `include "clk_gen_drv.svh"
+    `include "clk_gen_mon.svh"
+    `include "clk_gen_agt.svh"
+    `include "clk_gen_seq.svh"
     
-endpackage : shift_pkg
+endpackage : clk_gen_pkg

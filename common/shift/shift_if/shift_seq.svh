@@ -6,13 +6,9 @@ class shift_seq extends uvm_sequence#(shift_tran);
     endfunction 
 
     task body;
-        repeat(16) begin
-            `uvm_info("SEQ", "SEQ_IN_PROCESS", UVM_LOW)
-            req = shift_tran::type_id::create("req");
-            start_item(req);
-            req.randomize();
-            finish_item(req);
-        end
-        `uvm_info("SEQ", "Done generation seq", UVM_LOW)
+        req = shift_tran::type_id::create("req");
+        start_item(req);
+        req.randomize();
+        finish_item(req);
     endtask : body
 endclass : shift_seq

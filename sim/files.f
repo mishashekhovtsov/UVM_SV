@@ -1,4 +1,6 @@
 +incdir+../common/logger
++incdir+../common/clk_gen/clk_gen_uvm
++incdir+../common/clk_gen/clk_gen_pkg
 +incdir+../common/shift/shift_if
 +incdir+../common/shift/shift_if_pkg
 +incdir+../common/tb/uvm_classes
