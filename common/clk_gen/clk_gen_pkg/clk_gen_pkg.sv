@@ -1,8 +1,9 @@
+`include "clk_gen_if.sv"
+
 package clk_gen_pkg;
     import uvm_pkg::*;
     `include "uvm_macros.svh"
 
-    //`include "clk_gen_if.sv"
     `include "clk_gen_trans.svh"
     `include "clk_gen_seqr.svh"
     `include "clk_gen_drv.svh"
