@@ -3,6 +3,7 @@ class clk_gen_agt extends uvm_agent;
 
     clk_gen_drv driver;
     clk_gen_mon mon;
+    //uvm_sequencer#(clk_gen_trans) seqr;
     clk_gen_seqr seqr;
 
     function new (string name = "agent", uvm_component parent=null);

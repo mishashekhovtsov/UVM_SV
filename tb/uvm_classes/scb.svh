@@ -33,7 +33,7 @@ class scb extends uvm_scoreboard;
     virtual function write_shift_in(shift_tran trans);
         data_in_q.push_back(trans.in);
         wr_cnt++;
-        `uvm_info("L_INF", $sformatf("wr_cnt = %d",wr_cnt), UVM_LOW)
+        `uvm_info("L_INF", $sformatf("wr_cnt = %d",wr_cnt), UVM_HIGH)
          // foreach (data_in_q[i]) begin
          //     `uvm_info("L_INF", $sformatf("data_in_q[%0d] = %0b",i, data_in_q[i]), UVM_LOW)
          // end
@@ -42,7 +42,7 @@ class scb extends uvm_scoreboard;
     virtual function write_shift_out(shift_tran trans);
         data_out_q.push_back(trans.out);
         foreach (data_in_q[i]) begin
-            `uvm_info("L_INF", $sformatf("data_out_q[%0d] = %0b",i, data_out_q[i]), UVM_LOW)
+            `uvm_info("L_INF", $sformatf("data_out_q[%0d] = %0b",i, data_out_q[i]), UVM_HIGH)
         end
         ->start_check;
     endfunction : write_shift_out
@@ -63,7 +63,7 @@ class scb extends uvm_scoreboard;
                 //`uvm_fatal("L_FAT", "FATAL")
             end
             else
-                `uvm_info("L_INF", $sformatf("data_in = data_out | data_in = %b, data_out = %b", data_in, data_out), UVM_LOW)
+                `uvm_info("L_INF", $sformatf("data_in = data_out | data_in = %b, data_out = %b", data_in, data_out), UVM_HIGH)
         end
     endtask : run_phase
 

@@ -2,6 +2,7 @@ class clk_gen_trans extends uvm_sequence_item;
     `uvm_object_utils(clk_gen_trans)
 
     rand bit clk;
+    rand int rep_cnt;
 
     virtual function string convert2str();
         return $sformatf("clk=%0b", clk);

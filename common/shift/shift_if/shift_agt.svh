@@ -4,6 +4,7 @@ class shift_agt extends uvm_agent;
     shift_drv driver;
     shift_mon mon;
     shift_seqr seqr;
+    //uvm_sequencer#(shift_tran) seqr;
 
     function new (string name = "agent", uvm_component parent=null);
         super.new(name, parent);
@@ -11,9 +12,9 @@ class shift_agt extends uvm_agent;
 
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        seqr = shift_seqr::type_id::create("seqr", this);
         mon = shift_mon::type_id::create("mon", this);
         driver = shift_drv::type_id::create("driver", this);
+        seqr = shift_seqr::type_id::create("seqr", this);
     endfunction : build_phase
 
     virtual function void connect_phase(uvm_phase phase);

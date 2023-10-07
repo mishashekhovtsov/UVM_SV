@@ -310,7 +310,7 @@ class custom_report_server extends
                format_str    = $sformatf(fg_format[c_time[0]],
                                          bg_format[c_time[1]]);
                time_str      = $sformatf("@%7tns", $time);
-               time_str_fmtd = $sformatf({"@", format_str, "ns"}, $sformatf("%7t", $time));
+               time_str_fmtd = $sformatf({"@", format_str, "ns"}, $sformatf("%7t", $time/1000ns));
                // end TIME
 
                // --------------------------------------------------------------------

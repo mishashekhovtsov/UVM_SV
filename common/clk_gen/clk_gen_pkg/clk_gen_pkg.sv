@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 `include "clk_gen_if.sv"
 
 package clk_gen_pkg;
