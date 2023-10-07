@@ -1,28 +1,22 @@
 `timescale 1ns/1ps
 
 `include "uvm_macros.svh"
-`include "../../common/shift/shift_if_pkg/shift_pkg.sv"
-`include "shift_if.sv"
+`include "tb_pkg.svh"
 
 module top;
   import uvm_pkg::*;
-  import tb_pkg::*;
 
   bit rst_n;
 
-  shift_if vif();
-
-  initial begin
-    vif.clk = 0;
-    forever #5 vif.clk = ~vif.clk;
-  end
+  clk_gen_if clk_vif();
+  shift_if shift_vif(.clk(clk_vif.clk_o));
 
   shifter dut (
-    .clk    (vif.clk),
-    .rst_n  (rst_n  ),
-    .in     (vif.in ),
-    .q      (vif.out)
-    );
+    .clk    (clk_vif.clk_o),
+    .rst_n  (rst_n        ),
+    .in     (shift_vif.in ),
+    .q      (shift_vif.out)
+  );
 
   initial begin
     rst_n = 0;
@@ -31,9 +25,8 @@ module top;
   end
 
   initial begin
-    uvm_config_db#(virtual shift_if)::set(null, "*", "vif", vif);
-    $dumpfile("dump.vcd"); 
-    $dumpvars;
+    uvm_config_db#(virtual shift_if)::set(null, "*", "shift_vif", shift_vif);
+    uvm_config_db#(virtual clk_gen_if)::set(null, "*", "clk_vif", clk_vif);
     run_test();
   end
 
