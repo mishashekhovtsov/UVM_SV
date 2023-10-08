@@ -12,21 +12,18 @@
         req = shift_tran::type_id::create("req");
         if(!uvm_config_db#(virtual shift_if)::get(this, "", "shift_vif", vif)) begin
             `uvm_error("L_ERR", "Could not get vif")
-            `uvm_fatal("DRV_SHF", "FATAL")
+            `uvm_fatal("L_FAT", "FATAL")
         end
     endfunction : build_phase
 
     virtual task run_phase(uvm_phase phase);
         forever begin
-            `uvm_info("DRV", "DATA send data to DUT", UVM_HIGH)
             seq_item_port.get_next_item(req);
             @(posedge vif.clk)
-            vif.in  = req.in;
-            vif.out = req.out;
-
-            `uvm_info("DRV", "DATA send data to DUT", UVM_HIGH)
-            req.print();
-
+            if(vif.rst_n) begin
+                vif.in  = req.in;
+                req.out = vif.out;
+            end
             seq_item_port.item_done();
         end
     endtask : run_phase

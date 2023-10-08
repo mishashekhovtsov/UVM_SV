@@ -9,7 +9,7 @@ module top;
   bit rst_n;
 
   clk_gen_if clk_vif();
-  shift_if shift_vif(.clk(clk_vif.clk_o));
+  shift_if shift_vif(.clk(clk_vif.clk_o), .rst_n(rst_n));
 
   shifter dut (
     .clk    (clk_vif.clk_o),

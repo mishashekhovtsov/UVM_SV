@@ -48,7 +48,7 @@ class custom_report_server extends
    // identation size = 11(%11s) + 1 space + 1("@") + 7(%7t) + 2("ns") +
    //                   2 spaces (%2s) + 2(extra indentation) = 26
    parameter INDENT                          = 26;
-   parameter MAX_MSG_CHARS_PER_LINE          = 75 - INDENT;
+   parameter MAX_MSG_CHARS_PER_LINE          = 200 - INDENT;
    // Do not wrap the message is it takes more than 20 lines to do so
    parameter MAX_MSG_LEN_FOR_WRAP            = 20*MAX_MSG_CHARS_PER_LINE;
    parameter NUM_CONSEC_DASH_TO_DETECT_TABLE = 15;
@@ -394,7 +394,7 @@ class custom_report_server extends
                                                 bg_format[c_id[1]]);
                   id_str_fmtd       = $sformatf(format_str, id);
                   message_str       = {message_str, " :", id};
-                  message_str_fmtd  = {message_str_fmtd, " :", id_str_fmtd};
+                  message_str_fmtd  = {"[", id_str_fmtd, "]: ", message_str_fmtd};
                end
                // end MESSAGE + ID
 
@@ -429,7 +429,7 @@ class custom_report_server extends
                      tracebackinfo_str = {"\n", indentation_str, report_object_name, ",",
                                           "\n", indentation_str, filename_str};
                   end else begin
-                     tracebackinfo_str = {"\n", indentation_str, tracebackinfo_str};
+                     tracebackinfo_str = {/*"\n", indentation_str, */" | ", tracebackinfo_str, " |"};
                   end
                end
                tracebackinfo_str_fmtd = $sformatf(format_str, tracebackinfo_str);

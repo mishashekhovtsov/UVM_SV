@@ -14,7 +14,7 @@ class clk_gen_mon extends uvm_monitor;
         super.build_phase(phase);
         if(!uvm_config_db#(virtual clk_gen_if)::get(this, "", "clk_vif", vif)) begin
             `uvm_error("L_ERR", "Could not get vif")
-            `uvm_fatal("MON", "FATAL")
+            `uvm_fatal("L_FAT", "FATAL")
         end
 
         item = new();
