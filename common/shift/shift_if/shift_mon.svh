@@ -58,6 +58,8 @@ class shift_mon extends uvm_monitor;
             else 
                 cnt++;
         end
+        else
+            cnt = 0;
     endtask : read
 
 endclass : shift_mon
