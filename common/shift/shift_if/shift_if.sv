@@ -1,5 +1,4 @@
-interface shift_if;
-	logic clk;
-	bit in;
-	bit out;
+interface shift_if(input clk, input rst_n);
+    logic in;
+    logic out;
 endinterface : shift_if

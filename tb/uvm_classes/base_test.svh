@@ -7,7 +7,7 @@ class base_test extends uvm_test;
     uvm_cmdline_processor clp;
 
     env my_env;
-    shift_seq seq;
+    base_vseq vseq;
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -28,14 +28,14 @@ class base_test extends uvm_test;
         end // if (!clp.get_arg_matches("+UVM_REPORT_DEFAULT", clp_uvm_args))
         super.build_phase(phase);
         my_env = env::type_id::create("my_env", this);
-        seq = shift_seq::type_id::create("seq");
         end
     endfunction : build_phase
 
     virtual task run_phase(uvm_phase phase);
-        
+        vseq = base_vseq::type_id::create("vseq", this);
         phase.raise_objection(this);
-        seq.start(my_env.agt.seqr);
+        vseq.start(my_env.vseqr);
         phase.drop_objection(this);
     endtask : run_phase
+
 endclass : base_test
