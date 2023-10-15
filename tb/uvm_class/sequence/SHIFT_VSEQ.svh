@@ -44,6 +44,11 @@ class SHIFT_VSEQ extends base_vseq;
         sh_read_seq.oe = 0;
         `uvm_send(sh_read_seq)
 
+        clk_seq.rep_cnt = 2;
+        `uvm_send(clk_seq) 
+        rst_seq.rst_o = 0;
+        `uvm_send(rst_seq);
+
         clk_seq.rep_cnt = 40;
         `uvm_send(clk_seq)     
 

@@ -56,10 +56,15 @@ class shift_mon extends uvm_monitor;
     virtual task read();
         if(cfg.SHIFT_OP == SHIFT_RD) begin
             if(vif.rst_n) begin
-                if(vif.oe && cnt == 2) begin
+                if(vif.oe && cnt == 2 || !vif.oe && cnt > 0) begin
                     item.op = SHIFT_RD;
                     item.in = vif.in;
-                    item.oe = vif.oe;
+                    if(!vif.oe) begin
+                        cnt--;
+                        item.oe = 1;
+                    end
+                    else
+                        item.oe = vif.oe;
                     `uvm_info("L_INF", $sformatf("Mon found packet | IN | %b", item.in), UVM_HIGH)
                     mon_analysis_out_port.write(item);
                 end
