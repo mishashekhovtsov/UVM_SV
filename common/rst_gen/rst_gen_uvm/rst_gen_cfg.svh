@@ -7,7 +7,7 @@ class rst_gen_cfg extends uvm_object;
         super.new(name);
     endfunction 
 
-    function init (input async_sync_t async_sync_mode);
+    function void init (input async_sync_t async_sync_mode);
         this.async_sync = async_sync_mode;
     endfunction 
 

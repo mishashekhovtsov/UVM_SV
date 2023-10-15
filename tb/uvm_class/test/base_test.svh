@@ -7,7 +7,10 @@ class base_test extends uvm_test;
     uvm_cmdline_processor clp;
 
     env my_env;
-    base_vseq vseq;
+    SHIFT_VSEQ vseq;
+    //uvm_sequence_base vseq;
+
+    //string VSEQ_NAME;
 
     function new(string name, uvm_component parent);
         super.new(name, parent);
@@ -24,15 +27,21 @@ class base_test extends uvm_test;
                 `else
                     my_report_server  = new();
                 `endif
-            uvm_report_server::set_server( my_report_server );
-        end // if (!clp.get_arg_matches("+UVM_REPORT_DEFAULT", clp_uvm_args))
-        super.build_phase(phase);
-        my_env = env::type_id::create("my_env", this);
+                    uvm_report_server::set_server( my_report_server );
+            end // if (!clp.get_arg_matches("+UVM_REPORT_DEFAULT", clp_uvm_args))
         end
+        super.build_phase(phase);
+
+        my_env = env::type_id::create("my_env", this);
+        //vseq   = base_vseq::type_id::create("vseq", this);
+        vseq   = SHIFT_VSEQ::type_id::create("vseq", this);
+        // case(VSEQ_NAME)
+        //     "SHIFT_VSEQ" : vseq = SHIFT_VSEQ::type_id::create("SHIFT_VSEQ");
+        // endcase
     endfunction : build_phase
 
     virtual task run_phase(uvm_phase phase);
-        vseq = base_vseq::type_id::create("vseq", this);
+        
         phase.raise_objection(this);
         vseq.start(my_env.vseqr);
         phase.drop_objection(this);

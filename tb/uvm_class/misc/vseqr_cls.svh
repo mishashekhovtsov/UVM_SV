@@ -5,7 +5,8 @@ class vseqr_cls extends uvm_sequencer;
 
     clk_gen_seqr clk_gen_seqr;
     rst_gen_seqr rst_gen_seqr;
-    shift_seqr shift_in_out_seqr;
+    shift_seqr   shift_wr_seqr;
+    shift_seqr   shift_rd_seqr;
     function new(string name = "vseqr_cls", uvm_component parent = null);
         super.new(name, parent);
 

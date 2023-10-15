@@ -15,6 +15,8 @@ class rst_gen_agt extends uvm_agent;
         seqr = rst_gen_seqr::type_id::create("seqr", this);
         mon = rst_gen_mon::type_id::create("mon", this);
         driver = rst_gen_drv::type_id::create("driver", this);
+        driver.cfg = cfg;
+        mon.cfg    = cfg;
     endfunction : build_phase
 
     virtual function void connect_phase(uvm_phase phase);

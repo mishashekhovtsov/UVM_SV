@@ -15,11 +15,6 @@ class rst_gen_drv extends uvm_driver #(rst_gen_trans);
             `uvm_error("L_ERR", "Could not get vif (rst_gen_if)")
             `uvm_fatal("L_FAT", "FATAL")
         end
-        if(!uvm_config_db#(rst_gen_cfg)::get(this, "*", "rst_gen_cfg", cfg)) begin
-            `uvm_error("L_ERR", "Could not get cgf (rst_gen_cfg)")
-            `uvm_fatal("L_FAT", "FATAL")
-        end
-
     endfunction : build_phase
 
     virtual task run_phase(uvm_phase phase);
